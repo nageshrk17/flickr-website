@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
+import { withRouter } from 'react-router';
 
 import {
   ContainerDiv,
   ContentDiv,
   ItemDiv,
   MembersIcon,
+  PhotosIcon,
   IconDiv,
 } from './styles';
 
@@ -13,7 +15,12 @@ import {
 class GroupsList extends Component {
   constructor(props) {
     super(props);
-    
+    this.navigateToGalleryPage = this.navigateToGalleryPage.bind(this);
+  }
+
+  navigateToGalleryPage(id) {
+    const { history } = this.props;
+    history.push(`gallery/${id}`);
   }
 
   
@@ -23,7 +30,7 @@ class GroupsList extends Component {
       <ContainerDiv>
         {collection && collection.map((item) => {
           return (
-            <ContentDiv key={item.nsid}>
+            <ContentDiv key={item.nsid} onClick={() => this.navigateToGalleryPage(item.nsid)}>
              { item.iconfarm === 0 ? 
                  <img src='https://www.noblehour.com/public/layouts/images/group-default-logo.png'  alt='Default Image' />
                :
@@ -37,6 +44,10 @@ class GroupsList extends Component {
                    <MembersIcon /> 
                    <span>{item.members}</span>
                 </IconDiv>
+                <IconDiv>
+                   <PhotosIcon /> 
+                   <span>{item.pool_count}</span>
+                </IconDiv>
               </div>
             </ContentDiv>
           );
@@ -48,4 +59,4 @@ class GroupsList extends Component {
 
 
 
-export default GroupsList;
+export default withRouter(GroupsList);
