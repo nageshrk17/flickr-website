@@ -4,14 +4,14 @@ import {
   FETCH_GROUPS_FAILURE,
 } from '../constants/ActionTypes';
 
-const API_END_POINT = 'https://api.flickr.com/services/rest/?method=flickr.groups.search&api_key=4f6cfbe2d265d0a9e3f45e085d65bdf4&text=nature&format=json&nojsoncallback=1'
 
-export const fetchGroups = () => {
+export const fetchGroups = value => {
   return (dispatch) => {
     dispatch({
       type: FETCH_GROUPS_REQUEST,
     })
-    const URL = `${API_END_POINT}`;
+    console.log(value);
+    const URL = `https://api.flickr.com/services/rest/?method=flickr.groups.search&api_key=4f6cfbe2d265d0a9e3f45e085d65bdf4&text=${value}&format=json&nojsoncallback=1`;
     return fetch(URL, {
       method: 'GET',
     })

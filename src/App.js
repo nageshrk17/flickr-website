@@ -6,6 +6,7 @@ import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import Main from './Main';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const middlewares = [

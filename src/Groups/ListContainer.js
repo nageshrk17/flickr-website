@@ -1,22 +1,41 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import { Navbar, Form, FormControl } from 'react-bootstrap';
 import { fetchGroups } from '../actions/groups';
 import List from './GroupsList';
 
 
 class ListGroupsContainer extends Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.onTextChange = this.onTextChange.bind(this);
+  }
+
+ 
+  async onTextChange(e) {
+    const { value } = e.target;
     let { requestGroups } = this.props;
-    requestGroups();
+    requestGroups(value);
   }
 
   render() {
     let { collection } = this.props;
     console.log(collection);
     return (
-      <List
-        collection={collection}
-      />
+      <div>
+        <Navbar bg="light" expand="lg">
+        <Navbar.Brand>Flickr</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+          <Form>
+            <FormControl type="text" placeholder="Search" className="mr-sm-2" onChange={this.onTextChange} />
+          </Form>
+        </Navbar.Collapse>
+       </Navbar>
+       <List
+         collection={collection}
+       />
+      </div>
     );
   }
 }
@@ -26,8 +45,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  requestGroups() {
-    dispatch(fetchGroups());
+  requestGroups(value) {
+    dispatch(fetchGroups(value));
   },
 });
 

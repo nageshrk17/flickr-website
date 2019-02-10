@@ -5,6 +5,7 @@ export const ContainerDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
+  justify-content: center;
 `;
 
 export const ContentDiv = styled.div`
@@ -14,7 +15,7 @@ export const ContentDiv = styled.div`
   border: 1px solid #ccc;
   box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.3);
   width: 380px;
-  height: 75px;
+  height: 105px;
   display: flex;
   flex-direction: row;
   cursor: pointer;
@@ -36,6 +37,7 @@ export const ItemDiv = styled.div`
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    font-size: 16px;
   }
 `;
 
@@ -43,8 +45,8 @@ export const IconDiv = styled.div`
   padding: 20px;
   & span {
     position: relative;
-    top: -5px;
     padding-left: 10px;
+    font-size: 14px;
   }
 `;
 
